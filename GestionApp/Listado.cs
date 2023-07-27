@@ -22,16 +22,17 @@ namespace GestionApp
 
         private void Listado_Load(object sender, EventArgs e)
         {
-
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            dgvArticulos.DataSource = negocio.Listar();
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvArticulos.CurrentRow != null)
-            {
-                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-                cargarImagen(seleccionado.UrlImagen);
-            }
+            //if (dgvArticulos.CurrentRow != null)
+            //{
+            //    Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            //    cargarImagen(seleccionado.UrlImagen);
+            //}
         }
     }
 }
