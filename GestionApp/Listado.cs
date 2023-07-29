@@ -12,10 +12,10 @@ using Negocio;
 
 namespace GestionApp
 {
-    public partial class Listado : Form
+    public partial class frmListado : Form
     {
         private List<Articulo> listaArticulos;
-        public Listado()
+        public frmListado()
         {
             InitializeComponent();
         }
@@ -23,16 +23,31 @@ namespace GestionApp
         private void Listado_Load(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
-            dgvArticulos.DataSource = negocio.Listar();
+            listaArticulos = negocio.Listar();
+            dgvArticulos.DataSource = listaArticulos;
+            dgvArticulos.Columns["UrlImagen"].Visible=false;
+            cargarImagen(listaArticulos[0].UrlImagen);
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
-            //if (dgvArticulos.CurrentRow != null)
-            //{
-            //    Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            //    cargarImagen(seleccionado.UrlImagen);
-            //}
+            if (dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.UrlImagen);
+            }
+        }
+
+        private void cargarImagen(string imagen )
+        {
+            try
+            {
+                pbArticulos.Load(imagen);
+            }
+            catch (Exception)
+            {
+                pbArticulos.Load("https://winguweb.org/wp-content/uploads/2022/09/placeholder.png");
+            }
         }
     }
 }

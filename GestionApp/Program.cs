@@ -16,7 +16,7 @@ namespace GestionApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Listado());
+            Application.Run(new frmListado());
         }
     }
 }

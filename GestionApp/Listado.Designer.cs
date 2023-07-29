@@ -1,6 +1,6 @@
 ﻿namespace GestionApp
 {
-    partial class Listado
+    partial class frmListado
     {
         /// <summary>
         /// Required designer variable.
@@ -89,11 +89,16 @@
             // 
             // pbArticulos
             // 
-            this.pbArticulos.Location = new System.Drawing.Point(545, 46);
+            this.pbArticulos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbArticulos.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.pbArticulos.Location = new System.Drawing.Point(569, 46);
+            this.pbArticulos.MaximumSize = new System.Drawing.Size(264, 264);
             this.pbArticulos.Name = "pbArticulos";
-            this.pbArticulos.Size = new System.Drawing.Size(288, 264);
+            this.pbArticulos.Size = new System.Drawing.Size(264, 264);
+            this.pbArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pbArticulos.TabIndex = 5;
             this.pbArticulos.TabStop = false;
+            this.pbArticulos.UseWaitCursor = true;
             // 
             // tbFiltro
             // 
@@ -126,7 +131,7 @@
             this.comboBox3.Size = new System.Drawing.Size(80, 21);
             this.comboBox3.TabIndex = 9;
             // 
-            // Listado
+            // frmListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -141,7 +146,7 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgvArticulos);
-            this.Name = "Listado";
+            this.Name = "frmListado";
             this.Text = "Lista de Articulos";
             this.Load += new System.EventHandler(this.Listado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).EndInit();

@@ -1,6 +1,6 @@
 ﻿namespace GestionApp
 {
-    partial class Alta
+    partial class frmAlta
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -198,7 +198,7 @@
             this.btnCancelarAlta.Text = "Cancelar";
             this.btnCancelarAlta.UseVisualStyleBackColor = true;
             // 
-            // Alta
+            // frmAlta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -221,7 +221,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblCodigoArt);
-            this.Name = "Alta";
+            this.Name = "frmAlta";
             this.Text = "Agregar";
             ((System.ComponentModel.ISupportInitialize)(this.pbAlta)).EndInit();
             this.ResumeLayout(false);

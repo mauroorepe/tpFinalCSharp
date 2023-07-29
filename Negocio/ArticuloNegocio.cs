@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
-using Negocio;
 using System.Data.SqlClient;
 
 namespace Negocio
@@ -24,11 +23,14 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo ();
-                    aux.CodigoArticulo = (int)datos.Lector["Codigo"];
+                    aux.CodigoArticulo = (string)datos.Lector["Codigo"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["Descripcion"];
-                    aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
-                    aux.Precio = (int)datos.Lector["Precio"];
+                    if(!(datos.Lector["ImagenUrl"] is DBNull))
+                    {
+                        aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
+                    }
+                    aux.Precio = (decimal)datos.Lector["Precio"];
 
                     lista.Add(aux);
 

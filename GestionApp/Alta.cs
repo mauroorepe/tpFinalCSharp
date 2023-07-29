@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GestionApp
 {
-    public partial class Alta : Form
+    public partial class frmAlta : Form
     {
-        public Alta()
+        public frmAlta()
         {
             InitializeComponent();
         }
