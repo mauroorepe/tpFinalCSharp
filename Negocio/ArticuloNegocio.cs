@@ -30,7 +30,7 @@ namespace Negocio
                     {
                         aux.UrlImagen = (string)datos.Lector["ImagenUrl"];
                     }
-                    aux.Precio = (decimal)datos.Lector["Precio"];
+                    aux.Precio = Math.Round((decimal)datos.Lector["Precio"], 2);
 
                     lista.Add(aux);
 
