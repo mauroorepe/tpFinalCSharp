@@ -117,35 +117,36 @@
             this.tbCodigoArticulo.Location = new System.Drawing.Point(80, 15);
             this.tbCodigoArticulo.Name = "tbCodigoArticulo";
             this.tbCodigoArticulo.Size = new System.Drawing.Size(100, 20);
-            this.tbCodigoArticulo.TabIndex = 7;
+            this.tbCodigoArticulo.TabIndex = 0;
             // 
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(80, 41);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(100, 20);
-            this.tbNombre.TabIndex = 8;
+            this.tbNombre.TabIndex = 1;
             // 
             // tbDescripcion
             // 
             this.tbDescripcion.Location = new System.Drawing.Point(80, 67);
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.Size = new System.Drawing.Size(100, 20);
-            this.tbDescripcion.TabIndex = 9;
+            this.tbDescripcion.TabIndex = 2;
             // 
             // tbUrlImagen
             // 
             this.tbUrlImagen.Location = new System.Drawing.Point(80, 145);
             this.tbUrlImagen.Name = "tbUrlImagen";
             this.tbUrlImagen.Size = new System.Drawing.Size(100, 20);
-            this.tbUrlImagen.TabIndex = 12;
+            this.tbUrlImagen.TabIndex = 5;
+            this.tbUrlImagen.Leave += new System.EventHandler(this.tbUrlImagen_Leave);
             // 
             // tbPrecio
             // 
             this.tbPrecio.Location = new System.Drawing.Point(80, 172);
             this.tbPrecio.Name = "tbPrecio";
             this.tbPrecio.Size = new System.Drawing.Size(100, 20);
-            this.tbPrecio.TabIndex = 13;
+            this.tbPrecio.TabIndex = 6;
             // 
             // cboMarca
             // 
@@ -153,7 +154,7 @@
             this.cboMarca.Location = new System.Drawing.Point(80, 93);
             this.cboMarca.Name = "cboMarca";
             this.cboMarca.Size = new System.Drawing.Size(100, 21);
-            this.cboMarca.TabIndex = 14;
+            this.cboMarca.TabIndex = 3;
             // 
             // cboCategoria
             // 
@@ -161,7 +162,7 @@
             this.cboCategoria.Location = new System.Drawing.Point(80, 118);
             this.cboCategoria.Name = "cboCategoria";
             this.cboCategoria.Size = new System.Drawing.Size(100, 21);
-            this.cboCategoria.TabIndex = 15;
+            this.cboCategoria.TabIndex = 4;
             // 
             // pbAlta
             // 
@@ -176,7 +177,7 @@
             this.btnAgregarAlta.Location = new System.Drawing.Point(12, 212);
             this.btnAgregarAlta.Name = "btnAgregarAlta";
             this.btnAgregarAlta.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarAlta.TabIndex = 17;
+            this.btnAgregarAlta.TabIndex = 7;
             this.btnAgregarAlta.Text = "Agregar";
             this.btnAgregarAlta.UseVisualStyleBackColor = true;
             this.btnAgregarAlta.Click += new System.EventHandler(this.btnAgregarAlta_Click);
@@ -186,7 +187,7 @@
             this.btnModificarAlta.Location = new System.Drawing.Point(93, 212);
             this.btnModificarAlta.Name = "btnModificarAlta";
             this.btnModificarAlta.Size = new System.Drawing.Size(75, 23);
-            this.btnModificarAlta.TabIndex = 18;
+            this.btnModificarAlta.TabIndex = 8;
             this.btnModificarAlta.Text = "Modificar";
             this.btnModificarAlta.UseVisualStyleBackColor = true;
             // 
@@ -195,7 +196,7 @@
             this.btnCancelarAlta.Location = new System.Drawing.Point(278, 212);
             this.btnCancelarAlta.Name = "btnCancelarAlta";
             this.btnCancelarAlta.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelarAlta.TabIndex = 19;
+            this.btnCancelarAlta.TabIndex = 9;
             this.btnCancelarAlta.Text = "Cancelar";
             this.btnCancelarAlta.UseVisualStyleBackColor = true;
             this.btnCancelarAlta.Click += new System.EventHandler(this.btnCancelarAlta_Click);

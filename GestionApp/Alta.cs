@@ -36,6 +36,8 @@ namespace GestionApp
                 articulo.Descripcion = tbDescripcion.Text;
                 articulo.Categoria = (Categoria)cboCategoria.SelectedItem;
                 articulo.Marca = (Marca)cboMarca.SelectedItem;
+                articulo.UrlImagen = tbUrlImagen.Text;
+                articulo.Precio = decimal.Parse(tbPrecio.Text);
 
                 negocio.agregar(articulo);
                 MessageBox.Show("Agregado exitosamente");
@@ -64,5 +66,24 @@ namespace GestionApp
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void tbUrlImagen_Leave(object sender, EventArgs e)
+        {
+            string imagen = tbUrlImagen.Text;
+            cargarImagen(imagen);
+        }
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbAlta.Load(imagen);
+            }
+            catch (Exception)
+            {
+                pbAlta.Load("https://winguweb.org/wp-content/uploads/2022/09/placeholder.png");
+            }
+        }
+
     }
 }
