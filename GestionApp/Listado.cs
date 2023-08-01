@@ -22,11 +22,8 @@ namespace GestionApp
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            listaArticulos = negocio.Listar();
-            dgvArticulos.DataSource = listaArticulos;
-            dgvArticulos.Columns["UrlImagen"].Visible=false;
-            cargarImagen(listaArticulos[0].UrlImagen);
+            cargarDatos();
+            
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -35,6 +32,23 @@ namespace GestionApp
             {
                 Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
                 cargarImagen(seleccionado.UrlImagen);
+            }
+        }
+
+        private void cargarDatos()
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                listaArticulos = negocio.Listar();
+                dgvArticulos.DataSource = listaArticulos;
+                dgvArticulos.Columns["UrlImagen"].Visible = false;
+                cargarImagen(listaArticulos[0].UrlImagen);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
@@ -54,6 +68,7 @@ namespace GestionApp
         {
             frmAlta alta = new frmAlta();
             alta.ShowDialog();
+            cargarDatos();
         }
     }
 }
