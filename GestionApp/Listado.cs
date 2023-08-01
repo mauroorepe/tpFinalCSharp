@@ -49,5 +49,11 @@ namespace GestionApp
                 pbArticulos.Load("https://winguweb.org/wp-content/uploads/2022/09/placeholder.png");
             }
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmAlta alta = new frmAlta();
+            alta.ShowDialog();
+        }
     }
 }

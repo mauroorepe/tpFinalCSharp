@@ -179,6 +179,7 @@
             this.btnAgregarAlta.TabIndex = 17;
             this.btnAgregarAlta.Text = "Agregar";
             this.btnAgregarAlta.UseVisualStyleBackColor = true;
+            this.btnAgregarAlta.Click += new System.EventHandler(this.btnAgregarAlta_Click);
             // 
             // btnModificarAlta
             // 
@@ -197,6 +198,7 @@
             this.btnCancelarAlta.TabIndex = 19;
             this.btnCancelarAlta.Text = "Cancelar";
             this.btnCancelarAlta.UseVisualStyleBackColor = true;
+            this.btnCancelarAlta.Click += new System.EventHandler(this.btnCancelarAlta_Click);
             // 
             // frmAlta
             // 
@@ -223,6 +225,7 @@
             this.Controls.Add(this.lblCodigoArt);
             this.Name = "frmAlta";
             this.Text = "Agregar";
+            this.Load += new System.EventHandler(this.frmAlta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbAlta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
