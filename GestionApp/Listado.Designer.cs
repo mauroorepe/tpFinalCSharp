@@ -35,9 +35,12 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.pbArticulos = new System.Windows.Forms.PictureBox();
             this.tbFiltro = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cboCriterio = new System.Windows.Forms.ComboBox();
+            this.cboCampo = new System.Windows.Forms.ComboBox();
+            this.lblCampo = new System.Windows.Forms.Label();
+            this.lblCriterio = new System.Windows.Forms.Label();
+            this.tbFiltroAvanzado = new System.Windows.Forms.TextBox();
+            this.btnFiltroAvanzado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticulos)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +101,7 @@
             // 
             this.pbArticulos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbArticulos.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.pbArticulos.Location = new System.Drawing.Point(563, 46);
+            this.pbArticulos.Location = new System.Drawing.Point(567, 64);
             this.pbArticulos.Name = "pbArticulos";
             this.pbArticulos.Size = new System.Drawing.Size(267, 260);
             this.pbArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -112,39 +115,73 @@
             this.tbFiltro.Name = "tbFiltro";
             this.tbFiltro.Size = new System.Drawing.Size(237, 20);
             this.tbFiltro.TabIndex = 0;
+            this.tbFiltro.TextChanged += new System.EventHandler(this.tbFiltro_TextChanged);
             // 
-            // comboBox1
+            // cboCriterio
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(378, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(80, 21);
-            this.comboBox1.TabIndex = 2;
+            this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCriterio.FormattingEnabled = true;
+            this.cboCriterio.Location = new System.Drawing.Point(196, 419);
+            this.cboCriterio.Name = "cboCriterio";
+            this.cboCriterio.Size = new System.Drawing.Size(80, 21);
+            this.cboCriterio.TabIndex = 2;
             // 
-            // comboBox2
+            // cboCampo
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(464, 12);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(75, 21);
-            this.comboBox2.TabIndex = 3;
+            this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCampo.FormattingEnabled = true;
+            this.cboCampo.Location = new System.Drawing.Point(49, 419);
+            this.cboCampo.Name = "cboCampo";
+            this.cboCampo.Size = new System.Drawing.Size(80, 21);
+            this.cboCampo.TabIndex = 1;
+            this.cboCampo.SelectedIndexChanged += new System.EventHandler(this.cboCampo_SelectedIndexChanged);
             // 
-            // comboBox3
+            // lblCampo
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(292, 12);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(80, 21);
-            this.comboBox3.TabIndex = 1;
+            this.lblCampo.AutoSize = true;
+            this.lblCampo.Location = new System.Drawing.Point(8, 423);
+            this.lblCampo.Name = "lblCampo";
+            this.lblCampo.Size = new System.Drawing.Size(40, 13);
+            this.lblCampo.TabIndex = 9;
+            this.lblCampo.Text = "Campo";
+            // 
+            // lblCriterio
+            // 
+            this.lblCriterio.AutoSize = true;
+            this.lblCriterio.Location = new System.Drawing.Point(155, 423);
+            this.lblCriterio.Name = "lblCriterio";
+            this.lblCriterio.Size = new System.Drawing.Size(39, 13);
+            this.lblCriterio.TabIndex = 10;
+            this.lblCriterio.Text = "Criterio";
+            // 
+            // tbFiltroAvanzado
+            // 
+            this.tbFiltroAvanzado.Location = new System.Drawing.Point(358, 419);
+            this.tbFiltroAvanzado.Name = "tbFiltroAvanzado";
+            this.tbFiltroAvanzado.Size = new System.Drawing.Size(100, 20);
+            this.tbFiltroAvanzado.TabIndex = 12;
+            // 
+            // btnFiltroAvanzado
+            // 
+            this.btnFiltroAvanzado.Location = new System.Drawing.Point(464, 419);
+            this.btnFiltroAvanzado.Name = "btnFiltroAvanzado";
+            this.btnFiltroAvanzado.Size = new System.Drawing.Size(75, 23);
+            this.btnFiltroAvanzado.TabIndex = 13;
+            this.btnFiltroAvanzado.Text = "Buscar";
+            this.btnFiltroAvanzado.UseVisualStyleBackColor = true;
+            this.btnFiltroAvanzado.Click += new System.EventHandler(this.btnFiltroAvanzado_Click);
             // 
             // frmListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 416);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(852, 452);
+            this.Controls.Add(this.btnFiltroAvanzado);
+            this.Controls.Add(this.tbFiltroAvanzado);
+            this.Controls.Add(this.lblCriterio);
+            this.Controls.Add(this.lblCampo);
+            this.Controls.Add(this.cboCampo);
+            this.Controls.Add(this.cboCriterio);
             this.Controls.Add(this.tbFiltro);
             this.Controls.Add(this.pbArticulos);
             this.Controls.Add(this.btnEliminar);
@@ -171,8 +208,11 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.PictureBox pbArticulos;
         private System.Windows.Forms.TextBox tbFiltro;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cboCriterio;
+        private System.Windows.Forms.ComboBox cboCampo;
+        private System.Windows.Forms.Label lblCampo;
+        private System.Windows.Forms.Label lblCriterio;
+        private System.Windows.Forms.TextBox tbFiltroAvanzado;
+        private System.Windows.Forms.Button btnFiltroAvanzado;
     }
 }

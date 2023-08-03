@@ -23,6 +23,10 @@ namespace GestionApp
         private void Listado_Load(object sender, EventArgs e)
         {
             cargarDatos();
+            cboCampo.Items.Add("Precio");
+            cboCampo.Items.Add("Nombre");
+            cboCampo.Items.Add("Marca");
+            cboCampo.Items.Add("Categoria");
             
         }
 
@@ -42,8 +46,7 @@ namespace GestionApp
             {
                 listaArticulos = negocio.Listar();
                 dgvArticulos.DataSource = listaArticulos;
-                dgvArticulos.Columns["UrlImagen"].Visible = false;
-                dgvArticulos.Columns["Id"].Visible = false;
+                ocultarColumnas();
                 cargarImagen(listaArticulos[0].UrlImagen);
             }
             catch (Exception ex)
@@ -104,6 +107,68 @@ namespace GestionApp
                 throw ex;
             }
 
+        }
+
+        private void tbFiltro_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = tbFiltro.Text;
+
+            if (filtro != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["UrlImagen"].Visible = false;
+            dgvArticulos.Columns["Id"].Visible = false;
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if (opcion == "Precio")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
+            }         
+        }
+
+        private void btnFiltroAvanzado_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = tbFiltroAvanzado.Text;
+                dgvArticulos.DataSource = negocio.filtrar(campo,criterio, filtro);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
