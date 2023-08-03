@@ -43,8 +43,7 @@
             this.cboMarca = new System.Windows.Forms.ComboBox();
             this.cboCategoria = new System.Windows.Forms.ComboBox();
             this.pbAlta = new System.Windows.Forms.PictureBox();
-            this.btnAgregarAlta = new System.Windows.Forms.Button();
-            this.btnModificarAlta = new System.Windows.Forms.Button();
+            this.btnAceptarAlta = new System.Windows.Forms.Button();
             this.btnCancelarAlta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbAlta)).BeginInit();
             this.SuspendLayout();
@@ -172,24 +171,15 @@
             this.pbAlta.TabIndex = 16;
             this.pbAlta.TabStop = false;
             // 
-            // btnAgregarAlta
+            // btnAceptarAlta
             // 
-            this.btnAgregarAlta.Location = new System.Drawing.Point(12, 212);
-            this.btnAgregarAlta.Name = "btnAgregarAlta";
-            this.btnAgregarAlta.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarAlta.TabIndex = 7;
-            this.btnAgregarAlta.Text = "Agregar";
-            this.btnAgregarAlta.UseVisualStyleBackColor = true;
-            this.btnAgregarAlta.Click += new System.EventHandler(this.btnAgregarAlta_Click);
-            // 
-            // btnModificarAlta
-            // 
-            this.btnModificarAlta.Location = new System.Drawing.Point(93, 212);
-            this.btnModificarAlta.Name = "btnModificarAlta";
-            this.btnModificarAlta.Size = new System.Drawing.Size(75, 23);
-            this.btnModificarAlta.TabIndex = 8;
-            this.btnModificarAlta.Text = "Modificar";
-            this.btnModificarAlta.UseVisualStyleBackColor = true;
+            this.btnAceptarAlta.Location = new System.Drawing.Point(12, 212);
+            this.btnAceptarAlta.Name = "btnAceptarAlta";
+            this.btnAceptarAlta.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarAlta.TabIndex = 7;
+            this.btnAceptarAlta.Text = "Aceptar";
+            this.btnAceptarAlta.UseVisualStyleBackColor = true;
+            this.btnAceptarAlta.Click += new System.EventHandler(this.btnAceptarAlta_Click);
             // 
             // btnCancelarAlta
             // 
@@ -207,8 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(365, 247);
             this.Controls.Add(this.btnCancelarAlta);
-            this.Controls.Add(this.btnModificarAlta);
-            this.Controls.Add(this.btnAgregarAlta);
+            this.Controls.Add(this.btnAceptarAlta);
             this.Controls.Add(this.pbAlta);
             this.Controls.Add(this.cboCategoria);
             this.Controls.Add(this.cboMarca);
@@ -250,8 +239,7 @@
         private System.Windows.Forms.ComboBox cboMarca;
         private System.Windows.Forms.ComboBox cboCategoria;
         private System.Windows.Forms.PictureBox pbAlta;
-        private System.Windows.Forms.Button btnAgregarAlta;
-        private System.Windows.Forms.Button btnModificarAlta;
+        private System.Windows.Forms.Button btnAceptarAlta;
         private System.Windows.Forms.Button btnCancelarAlta;
     }
 }

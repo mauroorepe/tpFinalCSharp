@@ -43,6 +43,7 @@ namespace GestionApp
                 listaArticulos = negocio.Listar();
                 dgvArticulos.DataSource = listaArticulos;
                 dgvArticulos.Columns["UrlImagen"].Visible = false;
+                dgvArticulos.Columns["Id"].Visible = false;
                 cargarImagen(listaArticulos[0].UrlImagen);
             }
             catch (Exception ex)
@@ -69,6 +70,40 @@ namespace GestionApp
             frmAlta alta = new frmAlta();
             alta.ShowDialog();
             cargarDatos();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+            frmAlta modificar = new frmAlta(seleccionado);
+            modificar.ShowDialog();
+            cargarDatos();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            Articulo seleccionado;
+            
+
+            try
+            {
+                DialogResult resultado = MessageBox.Show("El registro seleccionado sera eliminado permanentemente, ¿está seguro que desea continuar?", "Eliminar Permanentemente", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (resultado == DialogResult.Yes)
+                {
+                    seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado);
+                    cargarDatos();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
     }
 }
