@@ -62,15 +62,11 @@ namespace GestionApp
             dgvArticulos.DataSource = listaFiltrada;
             if (listaFiltrada.Count==0)
             {
-                btnModificar.Enabled = false;
-                btnEliminar.Enabled = false;
-                btnDetalle.Enabled = false;
+                deshabilitarBotones();
             }
             else
             {
-                btnModificar.Enabled=true;
-                btnEliminar.Enabled=true;
-                btnDetalle.Enabled = true;
+                habilitarBotones();
             }
             ocultarColumnas();
         }
@@ -161,6 +157,14 @@ namespace GestionApp
                 string filtro = tbFiltroAvanzado.Text;
 
                 dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
+                if(dgvArticulos.RowCount == 0)
+                {
+                    deshabilitarBotones();
+                }
+                else
+                {
+                    habilitarBotones();
+                }
             }
             catch (Exception)
             {
@@ -281,6 +285,19 @@ namespace GestionApp
             
             tb.BackColor=Color.White;
             return false;
+        }
+
+        private void deshabilitarBotones()
+        {
+            btnModificar.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnDetalle.Enabled = false;
+        }
+        private void habilitarBotones()
+        {
+            btnModificar.Enabled = true;
+            btnEliminar.Enabled = true;
+            btnDetalle.Enabled = true;
         }
     }
 }
