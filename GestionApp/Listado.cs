@@ -114,7 +114,7 @@ namespace GestionApp
             catch (Exception ex)
             {
 
-                throw ex;
+                MessageBox.Show(ex.ToString());
             }
             
         }
@@ -184,7 +184,7 @@ namespace GestionApp
             catch (Exception ex)
             {
 
-                throw ex;
+                MessageBox.Show(ex.ToString());
             }
         }
         //Restricciones sobre campos
