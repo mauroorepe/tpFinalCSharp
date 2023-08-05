@@ -57,6 +57,7 @@
             this.dgvArticulos.Size = new System.Drawing.Size(535, 327);
             this.dgvArticulos.TabIndex = 4;
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
+            this.dgvArticulos.Click += new System.EventHandler(this.dgvArticulos_Click);
             // 
             // btnAgregar
             // 

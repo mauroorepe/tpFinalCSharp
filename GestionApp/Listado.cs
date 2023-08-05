@@ -25,6 +25,7 @@ namespace GestionApp
         //Eventos Ventana
         private void Listado_Load(object sender, EventArgs e)
         {
+            deshabilitarBotones();  
             cargarDatos();
             cboCampo.Items.Add("Precio");
             cboCampo.Items.Add("Nombre");
@@ -94,6 +95,13 @@ namespace GestionApp
 
 
         //Eventos CLICK (Botones)
+
+        private void dgvArticulos_Click(object sender, EventArgs e)
+        {
+            habilitarBotones();
+            //Evento agregado como metodo de validacion para la complicacion comentada en la entrega, al igual que el uso de las funciones habilitarBotones()
+            //y deshabilitarBotones() tanto en este evento como el evento Load;
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAlta alta = new frmAlta();
@@ -299,5 +307,7 @@ namespace GestionApp
             btnEliminar.Enabled = true;
             btnDetalle.Enabled = true;
         }
+
+        
     }
 }
