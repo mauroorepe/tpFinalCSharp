@@ -15,11 +15,14 @@ namespace GestionApp
     public partial class frmListado : Form
     {
         private List<Articulo> listaArticulos;
+
+        //Inicializacion del programa
         public frmListado()
         {
             InitializeComponent();
         }
 
+        //Eventos Ventana
         private void Listado_Load(object sender, EventArgs e)
         {
             cargarDatos();
@@ -27,9 +30,10 @@ namespace GestionApp
             cboCampo.Items.Add("Nombre");
             cboCampo.Items.Add("Marca");
             cboCampo.Items.Add("Categoria");
-            
-        }
+            cboCampo.Items.Add("Seleccione");
 
+        }
+        //Eventos DGV
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvArticulos.CurrentRow != null)
@@ -39,35 +43,61 @@ namespace GestionApp
             }
         }
 
-        private void cargarDatos()
+        //Eventos Filtros
+        private void tbFiltro_TextChanged(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            try
-            {
-                listaArticulos = negocio.Listar();
-                dgvArticulos.DataSource = listaArticulos;
-                ocultarColumnas();
-                cargarImagen(listaArticulos[0].UrlImagen);
-            }
-            catch (Exception ex)
-            {
+            List<Articulo> listaFiltrada;
+            string filtro = tbFiltro.Text;
 
-                throw ex;
+            if (filtro != "")
+            {
+                listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listaArticulos;
+            }
+
+            dgvArticulos.DataSource = null;
+            dgvArticulos.DataSource = listaFiltrada;
+            if (listaFiltrada.Count==0)
+            {
+                btnModificar.Enabled = false;
+                btnEliminar.Enabled = false;
+                btnDetalle.Enabled = false;
+            }
+            else
+            {
+                btnModificar.Enabled=true;
+                btnEliminar.Enabled=true;
+                btnDetalle.Enabled = true;
+            }
+            ocultarColumnas();
+        }
+
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cboCampo.SelectedItem.ToString();
+            if (opcion == "Precio")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+                cboCriterio.Items.Add("Contiene");
             }
         }
 
-        private void cargarImagen(string imagen )
-        {
-            try
-            {
-                pbArticulos.Load(imagen);
-            }
-            catch (Exception)
-            {
-                pbArticulos.Load("https://winguweb.org/wp-content/uploads/2022/09/placeholder.png");
-            }
-        }
 
+
+        //Eventos CLICK (Botones)
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAlta alta = new frmAlta();
@@ -78,10 +108,19 @@ namespace GestionApp
         private void btnModificar_Click(object sender, EventArgs e)
         {
             Articulo seleccionado;
-            seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
-            frmAlta modificar = new frmAlta(seleccionado);
-            modificar.ShowDialog();
-            cargarDatos();
+            try
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                frmAlta modificar = new frmAlta(seleccionado);
+                modificar.ShowDialog();
+                cargarDatos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -108,67 +147,140 @@ namespace GestionApp
             }
 
         }
-
-        private void tbFiltro_TextChanged(object sender, EventArgs e)
-        {
-            List<Articulo> listaFiltrada;
-            string filtro = tbFiltro.Text;
-
-            if (filtro != "")
-            {
-                listaFiltrada = listaArticulos.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()));
-            }
-            else
-            {
-                listaFiltrada = listaArticulos;
-            }
-
-            dgvArticulos.DataSource = null;
-            dgvArticulos.DataSource = listaFiltrada;
-            ocultarColumnas();
-        }
-
-        private void ocultarColumnas()
-        {
-            dgvArticulos.Columns["UrlImagen"].Visible = false;
-            dgvArticulos.Columns["Id"].Visible = false;
-        }
-
-        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string opcion = cboCampo.SelectedItem.ToString();
-            if (opcion == "Precio")
-            {
-                cboCriterio.Items.Clear();
-                cboCriterio.Items.Add("Mayor a");
-                cboCriterio.Items.Add("Menor a");
-                cboCriterio.Items.Add("Igual a");
-            }
-            else
-            {
-                cboCriterio.Items.Clear();
-                cboCriterio.Items.Add("Comienza con");
-                cboCriterio.Items.Add("Termina con");
-                cboCriterio.Items.Add("Contiene");
-            }         
-        }
-
         private void btnFiltroAvanzado_Click(object sender, EventArgs e)
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
 
             try
             {
+                if (cboRequerido(cboCampo, lblCampo, cboCriterio, lblCriterio) || tbRequerido(tbFiltroAvanzado))
+                    return;
+
                 string campo = cboCampo.SelectedItem.ToString();
                 string criterio = cboCriterio.SelectedItem.ToString();
                 string filtro = tbFiltroAvanzado.Text;
-                dgvArticulos.DataSource = negocio.filtrar(campo,criterio, filtro);
+
+                dgvArticulos.DataSource = negocio.filtrar(campo, criterio, filtro);
             }
             catch (Exception)
             {
 
                 throw;
             }
+        }
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            try
+            {
+                seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+                frmAlta detalle = new frmAlta(seleccionado, true);
+                detalle.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        //Restricciones sobre campos
+        private void tbFiltroAvanzado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((string)cboCampo.SelectedItem == "Precio")
+            {
+                if ((e.KeyChar < 48 || e.KeyChar > 59) && e.KeyChar != 8)
+                    e.Handled = true;
+            }
+        }
+
+
+        //FUNCIONES
+        private void cargarDatos()
+        {
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            try
+            {
+                listaArticulos = negocio.Listar();
+                dgvArticulos.DataSource = listaArticulos;
+                ocultarColumnas();
+                cargarImagen(listaArticulos[0].UrlImagen);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbArticulos.Load(imagen);
+            }
+            catch (Exception)
+            {
+                pbArticulos.Load("https://winguweb.org/wp-content/uploads/2022/09/placeholder.png");
+            }
+        }
+        private void ocultarColumnas()
+        {
+            dgvArticulos.Columns["UrlImagen"].Visible = false;
+            dgvArticulos.Columns["Id"].Visible = false;
+        }
+
+        private bool cboRequerido(ComboBox cbo, Label lbl)
+        {
+            if (cbo.SelectedIndex <0)
+            {
+                MessageBox.Show("Complete los campos obligatorios");
+                lbl.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+            else
+            {
+                lbl.ForeColor=System.Drawing.Color.Black;
+                return false;
+            }
+        }
+
+        private bool cboRequerido(ComboBox cbo, Label lbl, ComboBox cbo2, Label lbl2)
+        {
+            if (cbo.SelectedIndex < 0)
+            {
+                MessageBox.Show("Complete los campos obligatorios");
+                lbl.ForeColor = System.Drawing.Color.Red;
+                if (cbo2.SelectedIndex < 0)
+                {
+                    lbl2.ForeColor = System.Drawing.Color.Red;
+                    return true;
+                }
+                return true;
+            }
+            else if (cbo2.SelectedIndex < 0)
+            {
+                MessageBox.Show("Complete los campos obligatorios");
+                lbl2.ForeColor = System.Drawing.Color.Red;
+                return true;
+            }
+            else
+            {
+                lbl.ForeColor = System.Drawing.Color.Black;
+                lbl2.ForeColor=System.Drawing.Color.Black;
+                return false;
+            }
+        }
+
+        private bool tbRequerido(TextBox tb)
+        {
+            if (tb.Text == "" && cboCampo.SelectedItem.ToString() == "Precio")
+            {
+                tb.BackColor = Color.Red;
+                MessageBox.Show("Complete los campos obligatorios");
+                return true;
+            }
+            
+            tb.BackColor=Color.White;
+            return false;
         }
     }
 }

@@ -187,7 +187,6 @@ namespace Negocio
                     }
                 }
                 datos.setearConsulta(consulta);
-                MessageBox.Show(consulta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())

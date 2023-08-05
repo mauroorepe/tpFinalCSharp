@@ -86,6 +86,7 @@
             this.btnDetalle.TabIndex = 7;
             this.btnDetalle.Text = "Detalle";
             this.btnDetalle.UseVisualStyleBackColor = true;
+            this.btnDetalle.Click += new System.EventHandler(this.btnDetalle_Click);
             // 
             // btnEliminar
             // 
@@ -121,16 +122,17 @@
             // 
             this.cboCriterio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCriterio.FormattingEnabled = true;
-            this.cboCriterio.Location = new System.Drawing.Point(196, 419);
+            this.cboCriterio.Location = new System.Drawing.Point(196, 420);
             this.cboCriterio.Name = "cboCriterio";
             this.cboCriterio.Size = new System.Drawing.Size(80, 21);
             this.cboCriterio.TabIndex = 2;
             // 
             // cboCampo
             // 
+            this.cboCampo.BackColor = System.Drawing.SystemColors.Control;
             this.cboCampo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCampo.FormattingEnabled = true;
-            this.cboCampo.Location = new System.Drawing.Point(49, 419);
+            this.cboCampo.Location = new System.Drawing.Point(49, 420);
             this.cboCampo.Name = "cboCampo";
             this.cboCampo.Size = new System.Drawing.Size(80, 21);
             this.cboCampo.TabIndex = 1;
@@ -139,7 +141,7 @@
             // lblCampo
             // 
             this.lblCampo.AutoSize = true;
-            this.lblCampo.Location = new System.Drawing.Point(8, 423);
+            this.lblCampo.Location = new System.Drawing.Point(8, 424);
             this.lblCampo.Name = "lblCampo";
             this.lblCampo.Size = new System.Drawing.Size(40, 13);
             this.lblCampo.TabIndex = 9;
@@ -148,7 +150,7 @@
             // lblCriterio
             // 
             this.lblCriterio.AutoSize = true;
-            this.lblCriterio.Location = new System.Drawing.Point(155, 423);
+            this.lblCriterio.Location = new System.Drawing.Point(155, 424);
             this.lblCriterio.Name = "lblCriterio";
             this.lblCriterio.Size = new System.Drawing.Size(39, 13);
             this.lblCriterio.TabIndex = 10;
@@ -156,10 +158,11 @@
             // 
             // tbFiltroAvanzado
             // 
-            this.tbFiltroAvanzado.Location = new System.Drawing.Point(358, 419);
+            this.tbFiltroAvanzado.Location = new System.Drawing.Point(358, 420);
             this.tbFiltroAvanzado.Name = "tbFiltroAvanzado";
             this.tbFiltroAvanzado.Size = new System.Drawing.Size(100, 20);
             this.tbFiltroAvanzado.TabIndex = 12;
+            this.tbFiltroAvanzado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbFiltroAvanzado_KeyPress);
             // 
             // btnFiltroAvanzado
             // 
